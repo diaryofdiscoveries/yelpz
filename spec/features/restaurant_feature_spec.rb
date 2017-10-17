@@ -22,6 +22,8 @@ feature 'restaurants' do
     scenario 'should edit restaurant in db when restaurant is edited in edit page' do
     	 visit '/restaurants/new'
     			expect(page).to have_content('Name')
+          # puts page.body
+          # save_and_open_page
     			fill_in('restaurant[name]', :with => "Cafe Rouge")
           fill_in('restaurant[address]', :with => "Kensington Church Street")
     			fill_in('restaurant[description]', :with => "French Bistro")
