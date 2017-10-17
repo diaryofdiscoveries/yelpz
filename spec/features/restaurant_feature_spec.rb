@@ -27,7 +27,7 @@ feature 'restaurants' do
     			fill_in('restaurant[name]', :with => "Cafe Rouge")
           fill_in('restaurant[address]', :with => "Kensington Church Street")
     			fill_in('restaurant[description]', :with => "French Bistro")
-    			click_button('Save Restaurant')
+    			click_button('Create Restaurant')
     			expect(current_path).to eq '/restaurants/1'
 
           click_link('Edit')

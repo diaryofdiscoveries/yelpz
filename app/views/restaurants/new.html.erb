@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Add a new restaurant</title>
-    <h1>Add a new restaurant</h1>
-  </head>
-  <body>
+<h1>Add a new restaurant</h1>
 
-    <%= form_with scope: :restaurant, url: restaurants_path, local: true do |form| %>
+    <%= render 'form' %>
 
-    <% if @restaurant.errors.any? %>
-      <div id="error_explanation">
-        <h2>
-        <%= pluralize(@restaurant.errors.count, "error") %> prohibited
-        this article from being saved:
-        </h2>
-
-        <ul>
-          <% @restaurant.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-      <p>
-        <%= form.label :name %><br>
-        <%= form.text_field :name %>
-      </p>
-
-      <p>
-        <%= form.label :address %><br>
-        <%= form.text_field :address %>
-      </p>
-
-      <p>
-        <%= form.label :description %><br>
-        <%= form.text_area :description %>
-      </p>
-
-      <p>
-        <%= form.submit %>
-      </p>
-    <% end %>
-
-    <%= link_to 'Back to Restaurants', restaurants_path %>
-
-  </body>
-</html>
+<%= link_to 'Back to Restaurants', restaurants_path %>

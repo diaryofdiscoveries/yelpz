@@ -1,0 +1,37 @@
+<%= form_with model: @restaurant, local: true do |form| %>
+
+<% if @restaurant.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+    <%= pluralize(@restaurant.errors.count, "error") %> prohibited
+    this article from being saved:
+    </h2>
+
+    <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %>
+</p>
+
+<p>
+  <%= form.label :address %><br>
+  <%= form.text_field :address %>
+</p>
+
+<p>
+  <%= form.label :description %><br>
+  <%= form.text_area :description %>
+</p>
+
+<p>
+  <%= form.submit %>
+</p>
+
+<% end %>
