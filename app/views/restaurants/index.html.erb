@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<h1>Listing restaurants</h1>
+
+<%if @restaurants.any? %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Rating</th>
+      <th>Address</th>
+      <th>Description</th>
+    </tr>
+
+    <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= restaurant.name %></td>
+      <td><%= restaurant.rating %></td>
+      <td><%= restaurant.address %></td>
+      <td><%= restaurant.description %></td>
+      <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
+    </tr>
+    <% end %>
+  </table>
+<%else%>
 No restaurants yet
+<%end%>
 <a href='#'>Add a restaurant</a>
-  <body>
-    
-  </body>
-</html>
