@@ -41,7 +41,7 @@ feature 'restaurants' do
   end
 
   context 'deleting restaurants' do
-    scenario 'should delete a restaurant when delete button is pressed' do
+    scenario 'should delete a restaurant when delete button is pressed', js: true do
       visit '/restaurants/new'
          expect(page).to have_content('Name')
          # puts page.body
@@ -52,7 +52,7 @@ feature 'restaurants' do
          click_button('Create Restaurant')
          expect(current_path).to eq '/restaurants/1'
          expect(page).to have_content('Cafe Rouge')
-
+         visit '/restaurants'
          click_link('Delete')
          page.driver.browser.switch_to.alert.accept
          expect(current_path).to eq '/restaurants'

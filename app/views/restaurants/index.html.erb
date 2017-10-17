@@ -17,6 +17,9 @@
       <td><%= restaurant.description %></td>
       <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
       <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+      <td><%= link_to 'Delete', restaurant_path(restaurant),
+              method: :delete,
+              data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %></td>
     </tr>
     <% end %>
   </table>
