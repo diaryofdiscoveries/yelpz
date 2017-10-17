@@ -10,4 +10,12 @@ feature 'restaurants' do
       click_button('Save Restaurant')
       expect(current_path).to eq '/restaurants/1'
   end
+
+  context 'adding a blank restaurant name' do
+    it 'cannot be added to database/site' do
+      visit '/restaurants/new'
+      click_button('Save Restaurant')
+      expect(page).to have_content("Name can't be blank")
+    end
+  end
 end
