@@ -29,4 +29,16 @@ feature 'restaurants' do
       expect(page).to have_content("Name is too short")
     end
   end
+
+  context "adding a duplicate restaurant name" do
+    it 'cannot be added to database/site' do
+      Restaurant.create(name: "Pizza Express")
+      visit '/restaurants/new'
+      fill_in('restaurant[name]', :with => "Pizza Express")
+      fill_in('restaurant[address]', :with => "London")
+      fill_in('restaurant[description]', :with => "Italian")
+      click_button('Create Restaurant')
+      expect(page).to have_content("Name has already been taken")
+    end
+end
 end

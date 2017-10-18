@@ -18,11 +18,9 @@
   <%= @restaurant.rating %>
 </p>
 
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %><br>
+<%= link_to "Add review", new_restaurant_review_path(@restaurant) %><br>
+<%= link_to 'Back to Restaurants', restaurants_path %><br><br>
+
 <h2>Reviews</h2>
 <%= render @restaurant.reviews %>
-
-<h2>Add a review</h2>
-<%= render 'reviews/form' %>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %><br>
-<%= link_to 'Back to Restaurants', restaurants_path %>

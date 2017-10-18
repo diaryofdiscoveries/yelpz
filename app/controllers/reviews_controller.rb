@@ -18,6 +18,14 @@ class ReviewsController < ApplicationController
     redirect_to restaurant_path(@restaurant)
   end
 
+  def show
+    @review = Review.find(params[:id])
+  end
+
+  def index
+    @reviews = Review.where(restaurant_id: params[:restaurant_id])
+  end
+
   private
 
   def review_params
