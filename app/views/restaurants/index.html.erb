@@ -4,17 +4,17 @@
   <table>
     <tr>
       <th>Name</th>
-      <th>Rating</th>
       <th>Address</th>
       <th>Description</th>
+      <th>Average Rating</th>
     </tr>
 
     <% @restaurants.each do |restaurant| %>
     <tr>
       <td><%= restaurant.name %></td>
-      <td><%= restaurant.rating %></td>
       <td><%= restaurant.address %></td>
       <td><%= restaurant.description %></td>
+      <td><%= restaurant.average_rating %></td>
       <td><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %></td>
       <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
       <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
