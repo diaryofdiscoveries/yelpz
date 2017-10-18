@@ -18,21 +18,11 @@
   <%= @restaurant.rating %>
 </p>
 
-<!-- <h2>Add a review:</h2>
-<%= form_with(model: [ @restaurant, @restaurant.reviews.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :review %><br>
-    <%= form.text_area :review %>
-  </p>
-  <p>
-    <%= form.label :rating %><br>
-    <%= form.text_field :rating %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %> -->
+<h2>Reviews</h2>
+<%= render @restaurant.reviews %>
 
+<h2>Add a review</h2>
+<%= render 'reviews/form' %>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %><br>
 <%= link_to 'Back to Restaurants', restaurants_path %>

@@ -1,7 +1,2 @@
-<%= form_for [@restaurant, @review] do |r| %>
-  <%= r.label :rating %>
-  <%= r.select :rating, (1..5) %>
-  <%= r.label :review %>
-  <%= r.text_area(:review) %>
-  <%= r.submit %>
-<% end %>
+<h2>Add a review</h2>
+<%= render 'reviews/form' %>
