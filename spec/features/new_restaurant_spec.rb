@@ -18,4 +18,15 @@ feature 'restaurants' do
       expect(page).to have_content("Name can't be blank")
     end
   end
+
+  context 'adding a restaurant name with less than 2 letters' do
+    it 'cannot be added to database/site' do
+      visit '/restaurants/new'
+      fill_in('restaurant[name]', :with => "M")
+      fill_in('restaurant[address]', :with => "13 Montpelier Street, SW7")
+      fill_in('restaurant[description]', :with => "Italian")
+      click_button('Create Restaurant')
+      expect(page).to have_content("Name is too short")
+    end
+  end
 end

@@ -15,6 +15,7 @@
       <td><%= restaurant.rating %></td>
       <td><%= restaurant.address %></td>
       <td><%= restaurant.description %></td>
+      <td><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %></td>
       <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
       <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
       <td><%= link_to 'Delete', restaurant_path(restaurant),

@@ -4,11 +4,6 @@
 </p>
 
 <p>
-  <strong>Rating:</strong>
-  <%= @restaurant.rating %>
-</p>
-
-<p>
   <strong>Address:</strong>
   <%= @restaurant.address %>
 </p>
@@ -17,6 +12,27 @@
   <strong>Description:</strong>
   <%= @restaurant.description %>
 </p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @restaurant.rating %>
+</p>
+
+<!-- <h2>Add a review:</h2>
+<%= form_with(model: [ @restaurant, @restaurant.reviews.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :review %><br>
+    <%= form.text_area :review %>
+  </p>
+  <p>
+    <%= form.label :rating %><br>
+    <%= form.text_field :rating %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %> -->
+
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%= link_to 'Back to Restaurants', restaurants_path %>
