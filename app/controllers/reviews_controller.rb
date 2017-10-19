@@ -1,4 +1,8 @@
+require 'pry'
+
 class ReviewsController < ApplicationController
+
+  before_action :authenticate_user!, :except => [:index, :show]
 
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
@@ -8,6 +12,13 @@ class ReviewsController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.create(review_params)
+    @review.user = current_user
+    begin
+      @review.save!
+    rescue StandardError => bang
+      puts "Error running script: " + bang
+    end
+    # binding.pry
     redirect_to restaurant_path(@restaurant)
   end
 
