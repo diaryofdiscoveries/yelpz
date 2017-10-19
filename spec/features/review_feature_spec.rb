@@ -1,7 +1,20 @@
 require "rails_helper"
 
 feature "reviews" do
-  before { Restaurant.create name: "Joe's"}
+
+  before do
+    User.create email: 'zoe@example.com', password: '123456', password_confirmation: '123456'
+    visit '/'
+    click_link('Sign in')
+    fill_in('Email', with: 'zoe@example.com')
+    fill_in('Password', with: '123456')
+    click_button('Log in')
+    visit '/restaurants/new'
+    fill_in('restaurant[name]', :with => "Joe's")
+    fill_in('restaurant[address]', :with => "London")
+    fill_in('restaurant[description]', :with => "Cafe")
+    click_button('Create Restaurant')
+  end
 
   scenario "user can add a review to a restaurant" do
     visit "/restaurants"
