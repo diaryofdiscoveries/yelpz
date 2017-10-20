@@ -2,6 +2,20 @@ Yelpz
 =====
 Build a clone of [Yelp](http://www.yelp.co.uk).
 
+Continuous Deployment via Heroku
+----
+https://yelpz-zoe.herokuapp.com/
+
+Technologies used
+----
+- Ruby on Rails
+- PostgreSQL
+
+Tested using:
+----
+- RSpec
+- Capybara
+
 Objectives of exercise
 ----
 An introduction to Rails, focusing especially on:
