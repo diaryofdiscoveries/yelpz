@@ -1,22 +1,12 @@
-require "rails_helper"
+require 'rails_helper'
+require 'web_helper'
 
 feature "reviews" do
 
-  before do
-    User.create email: 'zoe@example.com', password: '123456', password_confirmation: '123456'
-    visit '/'
-    click_link('Sign in')
-    fill_in('Email', with: 'zoe@example.com')
-    fill_in('Password', with: '123456')
-    click_button('Log in')
-    visit '/restaurants/new'
-    fill_in('restaurant[name]', :with => "Joe's")
-    fill_in('restaurant[address]', :with => "London")
-    fill_in('restaurant[description]', :with => "Cafe")
-    click_button('Create Restaurant')
-  end
-
   scenario "user can add a review to a restaurant" do
+    sign_up
+    sign_in
+    add_restaurant
     visit "/restaurants"
     click_link "Review Joe's"
     select("4", from: "review[rating]")
@@ -26,6 +16,9 @@ feature "reviews" do
   end
 
   scenario "user can delete a review to a restaurant", js: true do
+    sign_up
+    sign_in
+    add_restaurant
     visit "/restaurants"
     click_link "Review Joe's"
     select("4", from: "review[rating]")
