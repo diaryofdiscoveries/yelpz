@@ -16,12 +16,11 @@
       <td><%= restaurant.description %></td>
       <td><%= restaurant.average_rating %></td>
       <td><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %></td>
-      <!-- <td><%= link_to 'Show', restaurant_path(restaurant) %></td> -->
-      <% if (current_user.id == restaurant.user.id)%>
+      <% if (current_user && current_user.id == restaurant.user_id)%>
       <td><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %></td>
       <td><%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant),
-              method: :delete,
-              data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %></td>
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %></td>
       <% end %>
     </tr>
     <% end %>
