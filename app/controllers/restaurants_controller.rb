@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  include RestaurantsHelper
 
   before_action :authenticate_user!, :except => [:index, :show]
 
@@ -8,6 +9,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @query_string = stringify(@restaurant.name, @restaurant.address)
   end
 
   def new

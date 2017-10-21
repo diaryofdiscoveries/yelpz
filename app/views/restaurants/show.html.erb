@@ -18,6 +18,13 @@
   <%= @restaurant.average_rating %>
 </p>
 
+<div class="google-maps">
+  <iframe src="<%= '//www.google.com/maps/embed/v1/place?q=' + @query_string +
+      '&zoom=17' +
+      '&key=' + ENV["GOOGLE_API_KEY"] %>">
+  </iframe>
+</div>
+
 <% if (current_user && current_user.id == @restaurant.user_id)%>
   <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br></p>
   <%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant),

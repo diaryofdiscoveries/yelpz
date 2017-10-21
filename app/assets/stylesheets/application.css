@@ -38,3 +38,32 @@
    margin-bottom: 15px;
    padding: 7px 9px;
  }
+
+ .jumbotron {
+      padding: 0px;
+      display: flex;
+      align-items: center;
+      background-image: url("holla_start_image.jpg");
+      background-size: cover;
+      color: #ffffff;
+      height: 600px;
+      text-shadow: 0.25px 0.25px 0.25px #000000;
+    }
+
+ .google-maps {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+ }
+
+ .google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    max-width: 600px;
+    height: 100% !important;
+    max-height: 450px;
+    border: 0px;
+ }
