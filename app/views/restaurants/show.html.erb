@@ -29,9 +29,13 @@
 <%= link_to "Add review", new_restaurant_review_path(@restaurant) %><br>
 <% end %>
 
-<h2>Reviews</h2>
-<%= render @restaurant.reviews %>
-
+<h3>Reviews</h3>
+<% if @restaurant.reviews.any? %>
+  <%= render @restaurant.reviews %>
+<% else %>
+  No review yet
+<% end %>
+<p><br></p>
 
 <div class="google-maps">
   <iframe src="<%= '//www.google.com/maps/embed/v1/place?q=' + @query_string +
