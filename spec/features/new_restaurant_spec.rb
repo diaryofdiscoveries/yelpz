@@ -3,6 +3,8 @@ require 'web_helper'
 
 feature 'restaurants' do
 
+  let!(:user1){ User.create(email: "zoe@example.com", password: "123456") }
+
   scenario 'a user must be logged in to create restaurants' do
     visit '/restaurants/new'
     expect(page).to have_content('You need to sign in or sign up before continuing.')
@@ -10,7 +12,6 @@ feature 'restaurants' do
   end
 
   scenario 'adding a new restaurant' do
-    sign_up
     sign_in
     visit '/restaurants/new'
     expect(page).to have_content('Name')
@@ -23,7 +24,6 @@ feature 'restaurants' do
 
   context 'adding a blank restaurant name' do
     it 'cannot be added to database/site' do
-      sign_up
       sign_in
       visit '/restaurants/new'
       click_button('Create Restaurant')
@@ -33,7 +33,6 @@ feature 'restaurants' do
 
   context 'adding a restaurant name with less than 2 letters' do
     it 'cannot be added to database/site' do
-      sign_up
       sign_in
       visit '/restaurants/new'
       fill_in('restaurant[name]', :with => "M")
@@ -46,7 +45,6 @@ feature 'restaurants' do
 
   context "adding a duplicate restaurant name" do
     it 'cannot be added to database/site' do
-      sign_up
       sign_in
       add_restaurant
       visit '/restaurants/new'

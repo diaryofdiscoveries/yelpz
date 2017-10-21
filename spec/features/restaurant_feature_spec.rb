@@ -3,14 +3,14 @@ require 'web_helper'
 
 feature 'restaurants' do
 
-  let!(:user){ User.create(email: "simon@example.com", password: "654321") }
+  let!(:user1){ User.create(email: "zoe@example.com", password: "123456") }
+  let!(:user2){ User.create(email: "sam@example.com", password: "654321") }
   #
   # let!(:pe){ Restaurant.create(name: "Pizza Express", address: "Kings road", description: "Italian", user_id: user1.id) }
   # let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "Kensington Church Street", description: "French bistro", user_id: user1.id) }
 
   context 'no restaurants have been added' do
     scenario 'should display a prompt to add a restaurant' do
-      sign_up
       sign_in
       visit '/restaurants'
       expect(page).to have_content 'No restaurants yet'
@@ -20,7 +20,6 @@ feature 'restaurants' do
 
   context 'restaurant has been added' do
     scenario 'should display restaurant' do
-      sign_up
       sign_in
       visit '/restaurants/new'
       fill_in('restaurant[name]', :with => "Pizza Express")
@@ -34,10 +33,9 @@ feature 'restaurants' do
   end
 
   context "editing restaurants" do
-    let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user.id) }
+    let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user2.id) }
 
     scenario 'user can edit a restaurant they created' do
-      sign_up
       sign_in
     	visit '/restaurants/new'
     		expect(page).to have_content('Name')
@@ -57,7 +55,6 @@ feature 'restaurants' do
     end
 
     scenario "user cannot edit a restaurant created by another user" do
-      sign_up
       sign_in
     	visit '/restaurants'
       click_link 'Cafe Rouge'
@@ -66,10 +63,9 @@ feature 'restaurants' do
   end
 
   context 'deleting restaurants' do
-    let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user.id) }
+    let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user2.id) }
 
     scenario "should delete a user's restaurant when delete button is pressed and confirmation made", js: true do
-      sign_up
       sign_in
       visit '/restaurants/new'
          expect(page).to have_content('Name')
@@ -87,7 +83,6 @@ feature 'restaurants' do
     end
 
     scenario "should not delete a user's restaurant when delete button is pressed and confirmation not made", js: true do
-      sign_up
       sign_in
       visit '/restaurants/new'
          expect(page).to have_content('Name')
@@ -107,7 +102,6 @@ feature 'restaurants' do
     end
 
     scenario "user cannot delete a restaurant created by another user" do
-      sign_up
       sign_in
     	visit '/restaurants'
       click_link 'Cafe Rouge'
