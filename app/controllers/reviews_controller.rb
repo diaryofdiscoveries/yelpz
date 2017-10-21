@@ -13,13 +13,16 @@ class ReviewsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.create(review_params)
     @review.user = current_user
-    begin
-      @review.save!
-    rescue StandardError => bang
-      puts "Error running script: " + bang
+
+    if @review.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      if @review.errors[:user]
+        redirect_to restaurant_path(@restaurant), alert: "You have already reviewed this restaurant"
+      else
+      render "new"
+      end
     end
-    # binding.pry
-    redirect_to restaurant_path(@restaurant)
   end
 
   def destroy
