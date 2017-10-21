@@ -18,7 +18,9 @@
   <%= @restaurant.average_rating %>
 </p>
 
-<%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br>
+<% if (current_user.id == @restaurant.user.id)%>
+  <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br>
+<% end %>
 <%= link_to "Add review", new_restaurant_review_path(@restaurant) %><br>
 <!-- <%= link_to 'Back to Restaurants', restaurants_path %><br><br> -->
 
