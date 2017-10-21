@@ -17,7 +17,17 @@ feature "reviews" do
     # expect(current_path).to eq "/restaurants/1"
   end
 
-  scenario "A user can not add more than one review for any restaurant" do
+  scenario "users can see who review belongs to" do
+    sign_in
+    visit "/restaurants/#{pe.id}"
+    click_link "Add review"
+    select("3", from: "review[rating]")
+    fill_in("review[review]", with: "Delicious pizza, bad service")
+    click_button "Create Review"
+    expect(page).to have_content("zoe@example.com")
+  end
+
+  scenario "a user can not add more than one review for any restaurant" do
     sign_in
     visit "/restaurants/#{pe.id}"
     click_link "Add review"
