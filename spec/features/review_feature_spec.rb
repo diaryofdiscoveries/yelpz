@@ -16,9 +16,8 @@ feature "reviews" do
       click_link("Sign out")
       sign_in(email: "zoe@example.com", password: "123456")
       visit "/restaurants"
-      click_link "Review Pizza Express"
-      expect(page).to have_content("Sorry, you cannot review your own restaurant")
-      expect(current_path).to eq("/restaurants/#{pe.id}")
+      expect(page).to have_content("Pizza Express")
+      expect(page).not_to have_content("Review Pizza Express")
     end
 
     scenario "user can add a review to a restaurant if it is not theirs" do

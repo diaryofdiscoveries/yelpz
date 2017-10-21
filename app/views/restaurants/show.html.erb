@@ -24,8 +24,10 @@
           method: :delete,
           data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %><br></p>
 <% end %>
+
+<% if (current_user && current_user.id != @restaurant.user_id)%>
 <%= link_to "Add review", new_restaurant_review_path(@restaurant) %><br>
-<!-- <%= link_to 'Back to Restaurants', restaurants_path %><br><br> -->
+<% end %>
 
 <h2>Reviews</h2>
 <%= render @restaurant.reviews %>
