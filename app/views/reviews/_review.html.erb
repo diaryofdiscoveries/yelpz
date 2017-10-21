@@ -1,15 +1,14 @@
 <p>
   <strong>Review by <%= review.user.email %><br></strong>
-  <%= review.review %>
-</p>
-
-<p>
+  <%= review.review %><br>
   <strong>Rating:</strong>
-  <%= review.rating %>
+  <%= review.rating %><br>
 </p>
 
 <p>
-  <%= link_to 'Destroy Review', [review.restaurant, review],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
+  <% if (current_user && current_user.id == review.user_id)%>
+    <%= link_to 'Destroy Review', [review.restaurant, review],
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </p>
