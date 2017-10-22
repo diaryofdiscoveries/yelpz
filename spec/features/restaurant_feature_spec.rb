@@ -63,7 +63,7 @@ feature 'restaurants' do
   end
 
   context 'deleting restaurants' do
-    let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user2.id, image: nil) }
+    let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user2.id) }
 
     # scenario "should delete a user's restaurant when delete button is pressed and confirmation made", js: true do
     #   sign_in
