@@ -1,6 +1,6 @@
 Yelpz
 =====
-Build a clone of [Yelp](http://www.yelp.co.uk).
+Built a clone of [Yelp](http://www.yelp.co.uk) in a week
 
 Continuous Deployment via Heroku
 ----
@@ -11,10 +11,30 @@ Technologies used
 - Ruby on Rails
 - PostgreSQL
 
+How to set up the application
+----
+```
+$ git clone https://github.com/diaryofdiscoveries/yelpz.git
+$ cd yelpz
+$ bundle
+$ psql
+$ createdb yelpz_test
+$ createdb yelpz_development
+$ bin/rails db:migrate
+$ rspec
+$ bin/rails server
+```
 Tested using:
 ----
 - RSpec
 - Capybara
+
+How to run tests
+----
+```sh
+$ cd yelpz
+$ rspec
+```
 
 Objectives of exercise
 ----
@@ -66,12 +86,9 @@ Although our version 2 serves its purpose - it's limited in a few respects. Firs
 * Users can only leave **one review per restaurant**
 * Users can delete their own reviews
 
-
 ### Further challenges (OPTIONAL)
 
 Finally, let's focus on uploading images, and creating a better user experience. This will introduce us to Amazon S3, Rails helper methods and using AJAX in conjunction with Rails.
-
-> A helpful gem for uploading files is [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) (which handles uploads) combined with [Fog](https://github.com/fog/fog) (which handles connection to Amazon S3). Heroku does not handle locally-uploaded images properly: so you need to put them somewhere else.
 
 ### Further specifications
 
