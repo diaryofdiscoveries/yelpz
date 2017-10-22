@@ -18,9 +18,10 @@
   <%= @restaurant.average_rating %>
 </p>
 
-<p>
-  <%= image_tag @restaurant.image.url(:large) %>
-</p>
+<!-- <div class="restaurant-image">
+  <%= image_tag(@image_url) %>
+</div> -->
+
 
 <% if (current_user && current_user.id == @restaurant.user_id)%>
   <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br></p>

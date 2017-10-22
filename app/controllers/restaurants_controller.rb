@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @query_string = stringify(@restaurant.name, @restaurant.address)
+    @image_url = @restaurant.image.url(:medium)
   end
 
   def new
