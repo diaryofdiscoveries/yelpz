@@ -10,7 +10,8 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @query_string = stringify(@restaurant.name, @restaurant.address)
-    @image_url = @restaurant.image.url(:medium)
+    @image_url = @restaurant.image.url(:large)
+    @stars_array = return_stars(@restaurant.average_rating)
   end
 
   def new

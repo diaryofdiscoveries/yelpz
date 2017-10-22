@@ -1,14 +1,14 @@
-<p>
-  <strong>Review by <%= review.user.email %><br></strong>
-  <%= review.review %><br>
-  <strong>Rating:</strong>
-  <%= review.rating %><br>
-</p>
-
-<p>
-  <% if (current_user && current_user.id == review.user_id)%>
-    <%= link_to 'Destroy Review', [review.restaurant, review],
-                 method: :delete,
-                 data: { confirm: 'Are you sure?' } %>
-  <% end %>
-</p>
+<div class="panel panel-info">
+  <div class="panel-heading" id="user_email">
+    <b>Review by <%= review.user.email %><br></b>
+  </div>
+  <div class="panel-body">
+    <p><%= review.review %><br></p>
+    <p>Rating: <%= review.rating%></p><br>
+      <% if (current_user && current_user.id == review.user_id)%>
+        <%= link_to 'Destroy Review', [review.restaurant, review],
+                     method: :delete,
+                     data: { confirm: 'Are you sure?' } %>
+      <% end %>
+  </div>
+</div>

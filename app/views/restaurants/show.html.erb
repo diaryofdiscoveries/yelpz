@@ -1,50 +1,52 @@
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+<div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-9">
+          <h4>Name: <%= @restaurant.name %></h4>
+        </div>
+          <div class="col-md-3">
+            <% @stars_array.each do |image| %>
+              <%= image_tag(image) %>
+            <% end  %>
+          </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p>Description: <%= @restaurant.description %></p>
+      <p>Address: <%= @restaurant.address %></p>
+      <p>Average rating: <%= @restaurant.average_rating %></p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
+      <div class="restaurant-image">
+        <%= image_tag(@image_url)%>
+      </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @restaurant.description %>
-</p>
+      <p>
+      <% if (current_user && current_user.id == @restaurant.user_id)%>
+        <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br></p>
+        <%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant),
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %><br></p>
+      <% end %>
 
-<p>
-  <strong>Average Rating:</strong>
-  <%= @restaurant.average_rating %>
-</p>
+      <% if (current_user && current_user.id != @restaurant.user_id)%>
+        <%= link_to "Add review", new_restaurant_review_path(@restaurant) %><br>
+      <% end %>
+      </p>
 
-<div class="restaurant-image">
-  <%= image_tag(@image_url) %>
-</div>
+      <h3>Reviews</h3>
+      <% if @restaurant.reviews.any? %>
+        <%= render @restaurant.reviews %>
+      <% else %>
+        No review yet
+      <% end %>
+      <p><br></p>
 
-
-<% if (current_user && current_user.id == @restaurant.user_id)%>
-  <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br></p>
-  <%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant),
-          method: :delete,
-          data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %><br></p>
-<% end %>
-
-<% if (current_user && current_user.id != @restaurant.user_id)%>
-<%= link_to "Add review", new_restaurant_review_path(@restaurant) %><br>
-<% end %>
-
-<h3>Reviews</h3>
-<% if @restaurant.reviews.any? %>
-  <%= render @restaurant.reviews %>
-<% else %>
-  No review yet
-<% end %>
-<p><br></p>
-
-<div class="google-maps">
-  <iframe src="<%= '//www.google.com/maps/embed/v1/place?q=' + @query_string +
-      '&zoom=17' +
-      '&key=' + ENV["GOOGLE_API_KEY"] %>">
-  </iframe>
+      <div class="google-maps">
+        <iframe src="<%= '//www.google.com/maps/embed/v1/place?q=' + @query_string +
+            '&zoom=17' +
+            '&key=' + ENV["GOOGLE_API_KEY"] %>">
+        </iframe>
+      </div>
+    </div>
 </div>
