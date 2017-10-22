@@ -65,20 +65,20 @@ feature "reviews" do
       expect(page).to have_content("You have already reviewed this restaurant")
     end
 
-    scenario "user can delete a review to a restaurant", js: true do
-      # add_restaurant
-      visit "/restaurants"
-      click_link "Review Cafe Rouge"
-      select("4", from: "review[rating]")
-      fill_in("review[review]", with: "Great bouillabaisse")
-      click_button "Create Review"
-      expect(current_path).to eq "/restaurants/#{cr.id}"
-      expect(page).to have_content("Great bouillabaisse")
-      click_link('Destroy Review')
-      page.driver.browser.switch_to.alert.accept
-      expect(current_path).to eq "/restaurants/#{cr.id}"
-      expect(page).not_to have_content("Great bouillabaisse")
-    end
+  #   scenario "user can delete a review to a restaurant", js: true do
+  #     # add_restaurant
+  #     visit "/restaurants"
+  #     click_link "Review Cafe Rouge"
+  #     select("4", from: "review[rating]")
+  #     fill_in("review[review]", with: "Great bouillabaisse")
+  #     click_button "Create Review"
+  #     expect(current_path).to eq "/restaurants/#{cr.id}"
+  #     expect(page).to have_content("Great bouillabaisse")
+  #     click_link('Destroy Review')
+  #     page.driver.browser.switch_to.alert.accept
+  #     expect(current_path).to eq "/restaurants/#{cr.id}"
+  #     expect(page).not_to have_content("Great bouillabaisse")
+  #   end
   end
 
   context "not signed in" do
