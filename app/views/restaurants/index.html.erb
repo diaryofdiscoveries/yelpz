@@ -12,6 +12,7 @@
 
     <% @restaurants.each do |restaurant| %>
     <tr>
+      <td><%= image_tag restaurant.image.url(:thumb) %></td>
       <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
       <td><%= restaurant.address %></td>
       <td><%= restaurant.description %></td>
