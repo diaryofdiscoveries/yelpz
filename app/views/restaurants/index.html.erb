@@ -1,34 +1,32 @@
-<h1>Listing restaurants</h1>
+<div class="container">
 
-<%if @restaurants.any? %>
-  <table>
-    <tr>
-      <th>  </th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Description</th>
-      <th>Average Rating</th>
-    </tr>
+<h2>Restaurants</h2>
 
-    <% @restaurants.each do |restaurant| %>
-    <tr>
-      <td><%= image_tag restaurant.image.url(:thumb) %></td>
-      <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-      <td><%= restaurant.address %></td>
-      <td><%= restaurant.description %></td>
-      <td><%= restaurant.average_rating %></td>
-      <% if (current_user && current_user.id != restaurant.user_id)%>
-        <td><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %></td>
-      <% end %>
-      <% if (current_user && current_user.id == restaurant.user_id)%>
-        <td><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant),
-                  method: :delete,
-                  data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
-<%else%>
-No restaurants yet
-<%end%>
+<% if @restaurants.any? %>
+
+  <% @restaurants.each do |restaurant| %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <b><%= image_tag restaurant.image.url(:thumb) %></b>
+      <b><%= link_to restaurant.name, restaurant_path(restaurant)%></b>
+    </div>
+    <div class="panel-body">
+      <p>Address: <%= restaurant.address%></p>
+      <p>Description: <%= restaurant.description%></p>
+      Average rating: <%= restaurant.average_rating%>
+    </div>
+  <% if (current_user && current_user.id != restaurant.user_id)%>
+    <p><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %></p>
+  <% end %>
+  <% if (current_user && current_user.id == restaurant.user_id)%>
+    <p><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %></p>
+    <td><%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant),
+              method: :delete,
+              data: { confirm: 'Are you sure you want to delete such an amazing restaurant?' } %><br></p>
+  <% end %>
+  </div>
+<% end %>
+<% else %>
+  No restaurants yet
+<% end %>
+</div>
