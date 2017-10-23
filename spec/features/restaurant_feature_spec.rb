@@ -65,41 +65,43 @@ feature 'restaurants' do
   context 'deleting restaurants' do
     let!(:cr){ Restaurant.create(name: "Cafe Rouge", address: "London", description: "French Bistro", user_id: user2.id) }
 
-    # scenario "should delete a user's restaurant when delete button is pressed and confirmation made", js: true do
-    #   sign_in
-    #   visit '/restaurants/new'
-    #      expect(page).to have_content('Name')
-    #      fill_in('restaurant[name]', :with => "Pizza Express")
-    #      fill_in('restaurant[address]', :with => "Baker street")
-    #      fill_in('restaurant[description]', :with => "Italian")
-    #      click_button('Create Restaurant')
-    #     #  expect(current_path).to eq '/restaurants/1'
-    #      expect(page).to have_content('Pizza Express')
-    #      visit '/restaurants'
-    #      click_link('Delete')
-    #      page.driver.browser.switch_to.alert.accept
-    #      expect(current_path).to eq '/restaurants'
-    #      expect(page).not_to have_content('Pizza Express')
-    # end
+    scenario "should delete a user's restaurant when delete button is pressed and confirmation made", js: true do
+      sign_in
+      visit '/restaurants/new'
+         expect(page).to have_content('Name')
+         fill_in('restaurant[name]', :with => "Pizza Express")
+         fill_in('restaurant[address]', :with => "Baker street")
+         fill_in('restaurant[description]', :with => "Italian")
+         click_button('Create Restaurant')
+        #  expect(current_path).to eq '/restaurants/1'
+         expect(page).to have_content('Pizza Express')
+         visit '/restaurants'
+         click_link('Delete')
+         page.driver.browser.switch_to.alert.accept
+         expect(current_path).to eq '/restaurants'
+         expect(page).not_to have_content('Pizza Express')
+    end
 
-    # scenario "should not delete a user's restaurant when delete button is pressed and confirmation not made", js: true do
-    #   sign_in
-    #   visit '/restaurants/new'
-    #      expect(page).to have_content('Name')
-    #      # puts page.body
-    #      # save_and_open_page
-    #      fill_in('restaurant[name]', :with => "Pizza Express")
-    #      fill_in('restaurant[address]', :with => "Baker street")
-    #      fill_in('restaurant[description]', :with => "Italian")
-    #      click_button('Create Restaurant')
-    #     #  expect(current_path).to eq '/restaurants/1'
-    #      expect(page).to have_content('Pizza Express')
-    #      visit '/restaurants'
-    #      click_link('Delete')
-    #      page.driver.browser.switch_to.alert.dismiss
-    #      expect(current_path).to eq '/restaurants'
-    #      expect(page).to have_content('Pizza Express')
-    # end
+    scenario "should not delete a user's restaurant when delete button is pressed and confirmation not made", js: true do
+      sign_in
+      visit '/restaurants/new'
+         expect(page).to have_content('Name')
+         # puts page.body
+         # save_and_open_page
+         fill_in('restaurant[name]', :with => "Pizza Express")
+         fill_in('restaurant[address]', :with => "Baker street")
+         fill_in('restaurant[description]', :with => "Italian")
+         p 'here'
+
+         click_button('Create Restaurant')
+        #  expect(current_path).to eq '/restaurants/1'
+         expect(page).to have_content('Pizza Express')
+         visit '/restaurants'
+         click_link('Delete')
+         page.driver.browser.switch_to.alert.dismiss
+         expect(current_path).to eq '/restaurants'
+         expect(page).to have_content('Pizza Express')
+    end
 
     scenario "user cannot delete a restaurant created by another user" do
       sign_in
